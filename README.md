@@ -1,339 +1,339 @@
-# SAP ERP Implementation Projects
+# SAP ERP Implementierungsprojekte
 
-> Hands-on SAP ECC experience across Materials Management, Production Planning, and Sales & Distribution modules
+> Praktische SAP ECC Erfahrung in den Modulen Materialwirtschaft, Produktionsplanung und Vertrieb
 
 [![SAP ECC](https://img.shields.io/badge/SAP-ECC-0FAAFF?style=flat-square&logo=sap)](https://www.sap.com/)
-[![Status](https://img.shields.io/badge/Status-Completed-success?style=flat-square)]()
-[![Period](https://img.shields.io/badge/Period-Jul--Sep%202025-blue?style=flat-square)]()
+[![Status](https://img.shields.io/badge/Status-Abgeschlossen-success?style=flat-square)]()
+[![Zeitraum](https://img.shields.io/badge/Zeitraum-Jul--Sep%202025-blue?style=flat-square)]()
 
-## 👤 About
+## 👤 Über mich
 
 **Name:** Krishnanunne Sajeev  
-**Institution:** Johannes Kepler University, Linz  
-**Program:** Business Informatics  
-**SAP System:** H03, Client 352  
+**Hochschule:** Johannes Kepler Universität Linz  
+**Studiengang:** Wirtschaftsinformatik  
+**SAP System:** H03, Mandant 352  
 
-## 📋 Table of Contents
+## 📋 Inhaltsverzeichnis
 
-- [Overview](#overview)
-- [Business Scenario](#business-scenario)
-- [Technical Implementation](#technical-implementation)
-- [Skills Demonstrated](#skills-demonstrated)
-- [Project Phases](#project-phases)
-- [Key Achievements](#key-achievements)
-- [Problem-Solving Examples](#problem-solving-examples)
-- [Documentation](#documentation)
-- [Contact](#contact)
+- [Überblick](#überblick)
+- [Business Szenario](#business-szenario)
+- [Technische Umsetzung](#technische-umsetzung)
+- [Demonstrierte Kompetenzen](#demonstrierte-kompetenzen)
+- [Projektphasen](#projektphasen)
+- [Erfolge](#erfolge)
+- [Problemlösungsbeispiele](#problemlösungsbeispiele)
+- [Dokumentation](#dokumentation)
+- [Kontakt](#kontakt)
 
-## 🎯 Overview
+## 🎯 Überblick
 
-This repository showcases **hands-on SAP ERP implementation experience** from three progressive university courses implementing integrated business processes for Global Bike Inc.'s strategic e-bike market entry.
+Dieses Repository dokumentiert **praktische SAP ERP Implementierungserfahrung** aus drei aufeinander aufbauenden Universitätskursen. Das Projekt umfasst die Implementierung integrierter Geschäftsprozesse für den strategischen E-Bike Markteintritt der Global Bike Inc.
 
-**Project Scope:**
-- End-to-end business process configuration in live SAP ECC system
-- Cross-module integration (MM ↔ PP ↔ SD)
-- Master data creation and organizational structure setup
-- SPRO customizing and process automation
-- Real-world problem-solving with vendor constraints and quality issues
+**Projektumfang:**
+- End-to-End Geschäftsprozess-Konfiguration im produktiven SAP ECC System
+- Cross-Modul Integration (MM ↔ PP ↔ SD)
+- Stammdatenanlage und Organisationsstruktur-Setup
+- SPRO Customizing und Prozessautomatisierung
+- Praktische Problemlösung bei Lieferantenbeschränkungen und Qualitätsproblemen
 
-**Duration:** 3 months (July - September 2025)  
-**Modules:** Materials Management (MM), Production Planning (PP), Sales & Distribution (SD), Controlling (CO)  
-**Interfaces:** SAP GUI + SAP Fiori
+**Dauer:** 3 Monate (Juli - September 2025)  
+**Module:** Materialwirtschaft (MM), Produktionsplanung (PP), Vertrieb (SD), Controlling (CO)  
+**Benutzeroberflächen:** SAP GUI + SAP Fiori
 
-## 🚴 Business Scenario
+## 🚴 Business Szenario
 
-**Company:** Global Bike Inc. (GBI) Austria  
-**Challenge:** Enter the e-bike market with new product line  
-**Complexity:** Complete supply chain setup from procurement through production to sales
+**Unternehmen:** Global Bike Inc. (GBI) Österreich  
+**Herausforderung:** Markteintritt im E-Bike Segment mit neuer Produktlinie  
+**Komplexität:** Komplette Supply Chain Einrichtung von Beschaffung über Produktion bis Vertrieb
 
-**Requirements:**
-- New product: E-Bike Super Toll 1234-21
-- 5-component manufacturing structure
-- Supplier integration (GigaRad-21) with MOQ constraints
-- Customer relationship (RadFan-21) with volume discounts
-- Development cost center for R&D tracking
-- Production site: Vienna plant (W000)
+**Anforderungen:**
+- Neues Produkt: E-Bike Super Toll 1234-21
+- 5-teilige Fertigungsstruktur
+- Lieferantenintegration (GigaRad-21) mit Mindestbestellmengen-Einschränkungen
+- Kundenbeziehung (RadFan-21) mit Mengenrabatten
+- Entwicklungs-Kostenstelle für F&E Tracking
+- Produktionsstandort: Werk Wien (W000)
 
-## 🔧 Technical Implementation
+## 🔧 Technische Umsetzung
 
-### Master Data Created
+### Angelegte Stammdaten
 
-| Type | Description | ID/Material |
-|------|-------------|-------------|
-| **Finished Product** | E-Bike Super Toll 1234 | E-MTBA-21 |
-| **Components** | Frame, Battery, Motor, Display, Wiring | 5 materials (MTBA2-21, Battery-21, etc.) |
-| **Vendor** | Component Supplier | GigaRad-21 (48391) |
-| **Customer** | E-Bike Retailer | RadFan-21 (200098) |
-| **Cost Center** | Development Department | 30-3-21 |
+| Typ | Beschreibung | ID/Material |
+|-----|--------------|-------------|
+| **Fertigprodukt** | E-Bike Super Toll 1234 | E-MTBA-21 |
+| **Komponenten** | Rahmen, Akku, Motor, Display, Kabelbaum | 5 Materialien (MTBA2-21, Battery-21, etc.) |
+| **Lieferant** | Komponentenlieferant | GigaRad-21 (48391) |
+| **Kunde** | E-Bike Händler | RadFan-21 (200098) |
+| **Kostenstelle** | Entwicklungsabteilung | 30-3-21 |
 
-### Business Processes Implemented
+### Implementierte Geschäftsprozesse
 
-#### 1️⃣ Procure-to-Pay Cycle (MM)
+#### 1️⃣ Beschaffungsprozess (MM)
 ```
-Purchase Requisition (ME51N)
+Bedarfsanforderung (ME51N)
     ↓
-Purchase Order (ME21N)
+Bestellung (ME21N)
     ↓
-Goods Receipt (MIGO)
+Wareneingang (MIGO)
     ↓
-Invoice Verification (MIRO)
-```
-
-#### 2️⃣ Order-to-Cash Cycle (SD)
-```
-Customer Inquiry (VA11)
-    ↓
-Sales Quotation (VA21)
-    ↓
-Sales Order (VA01)
-    ↓
-Delivery (VL01N/VL02N)
-    ↓
-Customer Invoice (VF01)
+Rechnungsprüfung (MIRO)
 ```
 
-#### 3️⃣ Production Planning & Execution (PP)
+#### 2️⃣ Vertriebsprozess (SD)
 ```
-BOM Creation (CS01)
+Kundenanfrage (VA11)
     ↓
-Routing Creation (CA01)
+Angebot (VA21)
     ↓
-MRP Run (MD02/MD04)
+Kundenauftrag (VA01)
     ↓
-Production Order (CO01)
+Lieferung (VL01N/VL02N)
     ↓
-Production Confirmation (CO11N)
+Faktura (VF01)
 ```
 
-### SPRO Customizing Objects
+#### 3️⃣ Produktionsplanung & Durchführung (PP)
+```
+Stücklistenanlage (CS01)
+    ↓
+Arbeitsplananlage (CA01)
+    ↓
+Materialbedarfsplanung (MD02/MD04)
+    ↓
+Fertigungsauftrag (CO01)
+    ↓
+Rückmeldung (CO11N)
+```
 
-| Object | ID | Purpose |
-|--------|-----|---------|
-| Purchasing Group | G21 | Procurement organization |
-| Production Control Profile | G00021 | Process automation |
-| Production Controller | G21 | Responsibility assignment |
-| Sales Document Type | ZG21 | Custom order processing |
+### SPRO Customizing-Objekte
 
-## 💡 Skills Demonstrated
+| Objekt | ID | Zweck |
+|--------|-----|-------|
+| Einkäufergruppe | G21 | Beschaffungsorganisation |
+| Produktionssteuerungsprofil | G00021 | Prozessautomatisierung |
+| Fertigungssteuerer | G21 | Verantwortungszuordnung |
+| Verkaufsbelegtyp | ZG21 | Kundenspezifische Auftragsbearbeitung |
 
-### SAP Technical Skills
+## 💡 Demonstrierte Kompetenzen
 
-**Transaction Codes Mastered (30+):**
+### SAP Fachkenntnisse
+
+**Beherrschte Transaktionscodes (30+):**
 - **MM:** MM01, MM02, ME51N, ME21N, MIGO, MIRO, XK01
 - **PP:** CS01, CA01, MD02, MD04, CO01, CO02, CO11N
 - **SD:** VA11, VA21, VA01, VL01N, VL02N, VF01, XD01
 - **CO:** KS01, KS02
 
-**Interfaces:**
-- SAP GUI (traditional interface)
-- SAP Fiori (modern web UI) - 4+ transactions
+**Benutzeroberflächen:**
+- SAP GUI (klassische Oberfläche)
+- SAP Fiori (moderne Web-UI) - 4+ Transaktionen
 
-**Configuration:**
+**Konfiguration:**
 - SPRO Customizing
-- Organizational structure setup
-- Master data views configuration
+- Organisationsstruktur-Setup
+- Stammdaten-Sichten Konfiguration
 
 ### Business Skills
 
-- End-to-end process understanding
-- Cross-module integration
-- Business process modeling (BPMN)
-- Strategic analysis (Porter's Value Chain)
-- Professional documentation (German)
+- End-to-End Prozessverständnis
+- Cross-Modul Integration
+- Geschäftsprozessmodellierung (BPMN)
+- Strategische Analyse (Porter's Wertkette)
+- Professionelle Dokumentation
 
-## 📚 Project Phases
+## 📚 Projektphasen
 
 ### Phase 1: Einführung in ERP-Systeme
-**Period:** July-August 2025  
-**Focus:** Foundation and basic business cycles  
-**Status:** ✅ Completed
+**Zeitraum:** Juli-August 2025  
+**Fokus:** Grundlagen und Basis-Geschäftsprozesse  
+**Status:** ✅ Abgeschlossen
 
-**Deliverables:**
-- Complete procure-to-pay implementation
-- Order-to-cash cycle execution
-- 6 material masters created
-- 2 business partners configured
-- Professional case study documentation
+**Ergebnisse:**
+- Komplette Beschaffungs-Implementierung
+- Vertriebsprozess-Durchführung
+- 6 Materialstammsätze angelegt
+- 2 Geschäftspartner konfiguriert
+- Professionelle Fallstudiendokumentation
 
-[📄 View Phase 1 Documentation](./Phase1_Einfuehrung/)
+[📄 Phase 1 Dokumentation ansehen](./Phase1_Einfuehrung/)
 
 ---
 
 ### Phase 2: ERP-Systeme Anwendungen I
-**Period:** September 2025  
-**Focus:** Production planning and Fiori proficiency  
-**Status:** ✅ Completed
+**Zeitraum:** September 2025  
+**Fokus:** Produktionsplanung und Fiori-Kompetenz  
+**Status:** ✅ Abgeschlossen
 
-**Deliverables:**
-- BOM and routing creation
-- MRP and production order execution
-- SAP Fiori transactions (4+)
-- Porter's Value Chain analysis
-- Process flow diagrams (BPMN)
+**Ergebnisse:**
+- Stücklisten- und Arbeitsplananlage
+- Materialbedarfsplanung und Fertigungsauftragsdurchführung
+- SAP Fiori Transaktionen (4+)
+- Porter's Wertketten-Analyse
+- Prozessflussdiagramme (BPMN)
 
-[📄 View Phase 2 Documentation](./Phase2_Anwendung_I/)
+[📄 Phase 2 Dokumentation ansehen](./Phase2_Anwendung_I/)
 
 ---
 
 ### Phase 3: ERP-Systeme Anwendungen II
-**Period:** September 2025  
-**Focus:** System customizing and automation  
-**Status:** ✅ Completed (~85%)
+**Zeitraum:** September 2025  
+**Fokus:** System Customizing und Automatisierung  
+**Status:** ✅ Abgeschlossen (~85%)
 
-**Deliverables:**
-- 4 customizing objects created
-- Process automation configuration
-- System testing and validation
-- Technical documentation
+**Ergebnisse:**
+- 4 Customizing-Objekte angelegt
+- Prozessautomatisierungs-Konfiguration
+- Systemtests und Validierung
+- Technische Dokumentation
 
-[📄 View Phase 3 Documentation](./Phase3_Anwendung_II/)
+[📄 Phase 3 Dokumentation ansehen](./Phase3_Anwendung_II/)
 
-## 🏆 Key Achievements
+## 🏆 Erfolge
 
-- ✅ **30+ SAP transactions** executed successfully
-- ✅ **8 master data objects** created (6 materials, 2 business partners)
-- ✅ **3 complete business cycles** implemented end-to-end
-- ✅ **4 customizing objects** configured for process automation
-- ✅ **Dual interface proficiency** - SAP GUI and Fiori
-- ✅ **70+ pages** of professional documentation
-- ✅ **Real-world problem solving** - MOQ conflicts, defective goods, system errors
+- ✅ **30+ SAP Transaktionen** erfolgreich durchgeführt
+- ✅ **8 Stammdatenobjekte** angelegt (6 Materialien, 2 Geschäftspartner)
+- ✅ **3 komplette Geschäftszyklen** End-to-End implementiert
+- ✅ **4 Customizing-Objekte** für Prozessautomatisierung konfiguriert
+- ✅ **Dual-Interface Kompetenz** - SAP GUI und Fiori
+- ✅ **70+ Seiten** professionelle Dokumentation
+- ✅ **Praktische Problemlösung** - Mindestbestellmengen, fehlerhafte Ware, Systemfehler
 
-## 🔥 Problem-Solving Examples
+## 🔥 Problemlösungsbeispiele
 
-### Challenge 1: Minimum Order Quantity Conflict
+### Herausforderung 1: Mindestbestellmengen-Konflikt
 
-**Problem:** Supplier GigaRad-21 required MOQ of 50 units per component, but development only needed 15 for prototyping.
+**Problem:** Lieferant GigaRad-21 forderte Mindestbestellmenge von 50 Stück pro Komponente, Entwicklung benötigte nur 15 für Prototyping.
 
-**Solution:** 
-- Ordered supplier minimum (50 units)
-- Managed excess inventory (35 units) with warehouse planning
-- Documented business impact and cost implications
+**Lösung:** 
+- Bestellung der Lieferanten-Mindestmenge (50 Stück)
+- Verwaltung des Überbestands (35 Stück) mit Lagerplanung
+- Dokumentation der geschäftlichen Auswirkungen
 
-**Skills:** Procurement negotiation, inventory management, business constraint handling
-
----
-
-### Challenge 2: Defective Goods Handling
-
-**Problem:** 5 display units arrived with surface defects, requiring returns and adjusted invoicing.
-
-**Solution:**
-- Executed MIGO returns transaction with proper reason codes
-- Adjusted goods receipt quantities (30 good vs 35 received)
-- Reconciled invoice verification for accepted quantity only
-
-**Skills:** Quality management, returns processing, three-way matching (PO-GR-IR)
+**Kompetenzen:** Beschaffungsverhandlung, Lagerverwaltung, Umgang mit Geschäftseinschränkungen
 
 ---
 
-### Challenge 3: Production Control Profile Configuration
+### Herausforderung 2: Umgang mit fehlerhafter Ware
 
-**Problem:** Initial production order creation failed - routing not properly linked to material master.
+**Problem:** 5 Display-Einheiten kamen mit Oberflächenfehlern an, Retouren und angepasste Rechnungsstellung erforderlich.
 
-**Solution:**
-- Used alternative MRP planning route (MD02 → CO41)
-- Created planned orders, then converted to production orders
-- Explicitly specified production controller G21 in conversion
+**Lösung:**
+- MIGO Retourentransaktion mit korrekten Grundcodes durchgeführt
+- Wareneingangsmenge angepasst (30 gut vs 35 erhalten)
+- Rechnungsprüfung nur für akzeptierte Menge abgestimmt
 
-**Skills:** System troubleshooting, PP module dependencies, alternative solution paths
+**Kompetenzen:** Qualitätsmanagement, Retourenabwicklung, 3-Wege-Abstimmung (Bestellung-Wareneingang-Rechnung)
 
-## 📖 Documentation
+---
 
-### Repository Structure
+### Herausforderung 3: Produktionssteuerungsprofil-Konfiguration
+
+**Problem:** Initiale Fertigungsauftragserstellung schlug fehl - Arbeitsplan nicht korrekt mit Materialstamm verknüpft.
+
+**Lösung:**
+- Alternative Materialbedarfsplanungs-Route verwendet (MD02 → CO41)
+- Planaufträge erstellt, dann in Fertigungsaufträge konvertiert
+- Fertigungssteuerer G21 explizit bei Konvertierung angegeben
+
+**Kompetenzen:** System-Troubleshooting, PP-Modul Abhängigkeiten, alternative Lösungswege
+
+## 📖 Dokumentation
+
+### Repository Struktur
 
 ```
-SAP-ERP-Projects/
+SAP-ERP-Projekte/
 │
-├── README.md                          # This file
-├── Portfolio_Overview.pdf             # Executive summary
+├── README.md                          # Diese Datei
+├── Portfolio_Übersicht.pdf            # Zusammenfassung
 │
 ├── Phase1_Einfuehrung/
-│   ├── Case_Study.pdf                # Complete documentation
-│   ├── Screenshots/                  # Key transactions
-│   └── Transaction_Summary.md        # Reference list
+│   ├── Fallstudie.pdf                # Komplette Dokumentation
+│   ├── Screenshots/                  # Wichtige Transaktionen
+│   └── Transaktions_Zusammenfassung.md
 │
 ├── Phase2_Anwendung_I/
-│   ├── Case_Study.pdf                # Advanced processes
-│   ├── Porter_Value_Chain.pdf        # Strategic analysis
-│   ├── Process_Flow_Diagram.pdf      # BPMN diagrams
-│   └── Screenshots/                  # Fiori & production planning
+│   ├── Fallstudie.pdf                # Erweiterte Prozesse
+│   ├── Porter_Wertkette.pdf          # Strategische Analyse
+│   ├── Prozessfluss_Diagramm.pdf     # BPMN Diagramme
+│   └── Screenshots/                  # Fiori & Produktionsplanung
 │
 ├── Phase3_Anwendung_II/
-│   ├── Customizing_Documentation.pdf # SPRO configurations
-│   ├── Test_Results.pdf              # Validation outcomes
-│   └── Screenshots/                  # Configuration screens
+│   ├── Customizing_Dokumentation.pdf # SPRO Konfigurationen
+│   ├── Test_Ergebnisse.pdf           # Validierungsergebnisse
+│   └── Screenshots/                  # Konfigurationsbildschirme
 │
-└── Resources/
-    ├── Transaction_Code_Reference.md # All T-codes used
-    ├── Master_Data_Overview.md       # Created objects
-    └── System_Architecture.md        # Technical setup
+└── Ressourcen/
+    ├── Transaktionscode_Referenz.md  # Alle verwendeten T-Codes
+    ├── Stammdaten_Übersicht.md       # Angelegte Objekte
+    └── System_Architektur.md         # Technisches Setup
 ```
 
-### Available Documents
+### Verfügbare Dokumente
 
-- 📄 **Portfolio Overview** - Executive summary for recruiters
-- 📄 **Case Studies (3)** - Detailed implementation documentation
-- 📄 **Process Diagrams** - BPMN flowcharts
-- 📄 **Strategic Analysis** - Porter's Value Chain
-- 📄 **Screenshots** - Key transactions and configurations
-- 📄 **Transaction Reference** - Complete T-code list
+- 📄 **Portfolio Übersicht** - Zusammenfassung für Recruiter
+- 📄 **Fallstudien (3)** - Detaillierte Implementierungsdokumentation
+- 📄 **Prozessdiagramme** - BPMN Flussdiagramme
+- 📄 **Strategische Analyse** - Porter's Wertkette
+- 📄 **Screenshots** - Wichtige Transaktionen und Konfigurationen
+- 📄 **Transaktionsreferenz** - Komplette T-Code Liste
 
-## 🎓 Courses Completed
+## 🎓 Absolvierte Kurse
 
 1. **256.904 Einführung in ERP-Systeme**  
-   Introduction to ERP Systems
+   Einführung in ERP-Systeme
 
 2. **256.905 ERP-Systeme Anwendungen I**  
-   ERP Systems Applications I
+   ERP-Systeme Anwendungen I
 
 3. **256.907 ERP-Systeme Anwendungen II**  
-   ERP Systems Applications II
+   ERP-Systeme Anwendungen II
 
-**Institution:** Johannes Kepler University, Linz  
-**Instructor:** Barbara Krumay et al.  
-**Period:** Summer Semester 2025
+**Institution:** Johannes Kepler Universität Linz  
+**Dozentin:** Barbara Krumay et al.  
+**Zeitraum:** Sommersemester 2025
 
-## 🌟 Why This Matters
+## 🌟 Warum das wichtig ist
 
-This project demonstrates:
+Dieses Projekt demonstriert:
 
-1. **Real System Experience** - Not simulations, actual SAP ECC work
-2. **Problem-Solving Ability** - Handled real-world complications
-3. **Cross-Module Understanding** - How MM, PP, SD integrate
-4. **Modern Skills** - Both traditional GUI and modern Fiori
-5. **Business Acumen** - Strategic analysis and process thinking
-6. **Professional Documentation** - Complete technical writing
+1. **Echte Systemerfahrung** - Keine Simulationen, tatsächliche SAP ECC Arbeit
+2. **Problemlösungsfähigkeit** - Umgang mit realen Komplikationen
+3. **Cross-Modul Verständnis** - Wie MM, PP, SD zusammenarbeiten
+4. **Moderne Kenntnisse** - Sowohl traditionelles GUI als auch modernes Fiori
+5. **Business-Verständnis** - Strategische Analyse und Prozessdenken
+6. **Professionelle Dokumentation** - Komplettes technisches Schreiben
 
-## 📬 Contact
+## 📬 Kontakt
 
-**Krishna Sajeev**  
-Business Informatics Student  
-Johannes Kepler University, Linz
+**Krishnanunne Sajeev**  
+Wirtschaftsinformatik Student  
+Johannes Kepler Universität Linz
 
-📧 Email: [Your Email]  
-💼 LinkedIn: [Your LinkedIn]  
-🌐 Portfolio: [This Repository]
-
----
-
-## 📝 License
-
-This repository contains academic project work completed as part of university coursework. Documentation and screenshots are for portfolio demonstration purposes.
+📧 E-Mail: [Ihre E-Mail]  
+💼 LinkedIn: [Ihr LinkedIn]  
+🌐 Portfolio: [Dieses Repository]
 
 ---
 
-## 🙏 Acknowledgments
+## 📝 Lizenz
 
-- Johannes Kepler University ERP Systems courses
-- Instructor: Barbara Krumay
-- SAP University Alliance Program
+Dieses Repository enthält akademische Projektarbeit, die im Rahmen von Universitätskursen erstellt wurde. Dokumentation und Screenshots dienen Portfoliopräsentationszwecken.
+
+---
+
+## 🙏 Danksagungen
+
+- Johannes Kepler Universität ERP-Systemkurse
+- Dozentin: Barbara Krumay
+- SAP University Alliance Programm
 
 ---
 
 <div align="center">
 
-**⭐ If you're a recruiter:** This repository showcases hands-on SAP implementation skills ready for internship application.
+**⭐ Für Recruiter:** Dieses Repository zeigt praktische SAP-Implementierungskenntnisse, die für Praktikumsbewerbungen bereit sind.
 
-**📧 Interested in discussing SAP opportunities?** Please reach out!
+**📧 Interesse an SAP-Möglichkeiten?** Bitte kontaktieren Sie mich!
 
 </div>
